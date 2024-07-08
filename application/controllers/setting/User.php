@@ -63,19 +63,17 @@ class User extends CI_Controller
     }
 
     function update_password() {
-        $id = $this->input->post('user_id');
+        $userid = $this->input->post('userid');
         $passupdate = password_hash($this->input->post('password'), PASSWORD_DEFAULT);
         $table = 'user';
         $data = [
             'password' => $passupdate
         ];
-        $where = array('id_user'=> $id);
-        if ($this->m_data->update_data($table,$data,$where)) {
-            $response = array('status' => 'success', 'message' => 'Password updated successfully');
-        } else {
-            $response = array('status' => 'error', 'message' => 'Failed to update password');
-        }
-        echo json_encode($response);
+        $where = array('id_user'=> $userid);
+        $this->m_data->update_data($table,$data,$where);
+        redirect('setting/User');
+        
+        // echo json_encode($response);
     }
 
     function delete($id)

@@ -117,7 +117,7 @@
                             <!-- <i class="fas fa-list-ul"></i> -->
                             <i class="fas fa-shield-alt"></i>
                         </div>
-                        <a href="<?= site_url('Master/dept') ?>" class="small-box-footer">
+                        <a href="<?= site_url('setting/dept') ?>" class="small-box-footer">
                             More info <i class="fas fa-arrow-circle-right"></i>
                         </a>
                     </div>
