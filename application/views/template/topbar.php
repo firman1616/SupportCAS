@@ -1,7 +1,7 @@
  <!-- Navbar -->
  <nav class="main-header navbar navbar-expand-md navbar-light navbar-dark">
      <div class="container">
-         <a href="../../index3.html" class="navbar-brand">
+         <a href="<?= site_url('Dashboard') ?>" class="navbar-brand">
              <img src="<?= base_url('assets/img/favicon/') ?>favicon32.png" alt="BB ICON" class="brand-image" style="opacity: .8">
              <span class="brand-text font-weight-light"><?= $title ?></span>
              <!-- img-circle elevation-3 -->
@@ -52,6 +52,24 @@
                          </li>
                      </ul>
                  </li> -->
+             </ul>
+             <ul class="navbar-nav ml-auto">
+                 <li class="nav-item">
+                     <a class="nav-link" href="<?= base_url('auth/logout') ?>" role="button">
+                         <h5><?= $user['name'] ?></h4>
+                     </a>
+                 </li>
+                 <li class="nav-item">
+                     <a class="nav-link" data-widget="fullscreen" href="#" role="button">
+                         <i class="fas fa-expand-arrows-alt"></i>
+                     </a>
+                 </li>
+                 <li class="nav-item">
+                     <a class="nav-link" href="<?= base_url('auth/logout') ?>" role="button">
+                         <i class="fas fa-sign-out-alt"></i>
+                     </a>
+                 </li>
+
              </ul>
 
          </div>
