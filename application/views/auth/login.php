@@ -33,7 +33,7 @@
                 <form action="<?= base_url('auth') ?>" method="post">
                     <?= form_error('email', '<small class="text-danger pl-3">', '</small>') ?>
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control" id="email" name="email"  placeholder="Email">
+                        <input type="text" class="form-control" id="email" name="email"  placeholder="Username">
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-envelope"></span>

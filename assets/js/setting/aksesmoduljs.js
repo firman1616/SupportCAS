@@ -15,7 +15,27 @@ $('.form-check-input').on('click', function() {
         },
         success: function(data) {
             console.log(data.role_id);
-            // document.location.href = BASE_URL + "setting/Modul/akses_modul/" + role_id
+            document.location.href = BASE_URL + "setting/Modul/akses_modul/" + role_id
         }
     })
-});
+}); 
+
+
+
+// $('.form-check-input').on('click', function() {
+//     const modulId = $(this).data('modul');
+//     const roleId = $(this).data('role');
+
+//     $.ajax({
+//         url: BASE_URL + "setting/Modul/change_akses_modul",
+//         type: 'post',
+//         data: {
+//             modulId: modulId,
+//             roleId: roleId
+//         },
+//         success: function(data) {
+//             console.log(data.roleId);
+//             document.location.href = BASE_URL + "setting/Modul/akses_modul/" + roleId
+//         }
+//     })
+// });
