@@ -95,7 +95,7 @@
             roleId: roleId
         },
         success: function(data) {
-            console.log(data.modulId);
+            console.log(data.roleId);
             document.location.href = BASE_URL + "setting/Modul/akses_modul/" + roleId
         }
     })

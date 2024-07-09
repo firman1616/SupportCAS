@@ -1,14 +1,14 @@
 $(document).ready(function() {
-    tableSales();    
+    tablePO();    
 });
 
-function tableSales() {
+function tablePO() {
     $.ajax({
-        url: BASE_URL + "sales/tableSales",
+        url: BASE_URL + "approve/tablePO",
         type: "POST",
         success: function (data) {
-            $('#div-table-sales').html(data);
-            $('#salesTable').DataTable({
+            $('#div-table-po').html(data);
+            $('#poTable').DataTable({
                 "processing": true,
                 "responsive": true,
             });

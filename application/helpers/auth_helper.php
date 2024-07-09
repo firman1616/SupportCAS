@@ -9,17 +9,14 @@ function is_logged_in()
         $role_id = $ci->session->userdata('role_id');
         $menu = $ci->uri->segment(1);
 
-        $queryMenu = $ci->db->get_where('modul', ['nama_modul' => $menu])->row_array();
-
-        // die(var_dump($queryMenu));
-
-
+        $queryMenu = $ci->db->get_where('modul', ['url_modul' => $menu])->row_array();
         $modul_id = $queryMenu['id_modul'];
 
         $userAccess = $ci->db->get_where('user_access_modul', [
             'role_id' => $role_id,
             'modul_id' => $modul_id
         ]);
+        // die(var_dump($userAccess));
 
         if ($userAccess->num_rows() < 1) {
             redirect('Auth/blocked');
