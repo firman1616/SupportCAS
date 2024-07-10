@@ -35,15 +35,15 @@ class Approve extends CI_Controller
         echo json_encode($this->load->view('approve/po/table-list',$data, false));
     }
 
-    function print_so($soe)  {
+    function print_po($oms)  {
         $data = [
-            'title' => 'Print SOE',
-            'print' => $this->sales->print_soe($soe)->result(),
-            'print_det' => $this->sales->detail_okl($soe)->result(),
+            'title' => 'Print PO',
+            'header' => $this->approve->print_pos($oms)->result(),
+            'det_pos' => $this->approve->det_pos($oms)->result(),
         ];
-        $name = $soe;
+        $name = $oms;
         $this->load->library('pdf');
-        $html = $this->load->view('sales/print_so', $data, TRUE);
+        $html = $this->load->view('approve/po/print-po', $data, TRUE);
         $this->pdf->createPDF($html, $name, false);
     }
 }

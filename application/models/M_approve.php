@@ -15,6 +15,8 @@ class M_approve extends CI_Model
             a.cur,
             a.val,
             a.state,
+            a.chusr,
+            a.ppn,
             b.sub,
             b.name as nama_sup
         FROM
@@ -23,7 +25,52 @@ class M_approve extends CI_Model
         WHERE
             a.oms LIKE '%pos%'
             and a.DATE >= DATE_SUB( CURDATE(), INTERVAL 1 YEAR)
-        ORDER BY a.oms DESC;");
+        ORDER BY a.oms DESC");
+    }
+
+    function print_pos($oms) {
+        $db_cas = $this->load->database('cas', TRUE);
+        return $db_cas->query("SELECT
+            a.oms,
+            a.date,
+            a.cur,
+            a.val,
+            a.state,
+            a.chusr,
+            a.ppn,
+            a.addnote,
+            b.sub,
+            b.NAME AS nama_sup,
+            b.top
+        FROM
+            oms AS a
+            JOIN sub AS b ON b.sub = a.sub 
+        WHERE
+            a.oms = '$oms'");
+    }
+
+    function det_pos($oms) {
+        $db_cas = $this->load->database('cas', TRUE);
+        return $db_cas->query("SELECT
+            a.oms,
+            c.inv,
+            c.remark,
+            c.spesifikasi,
+            c.qty,
+            c.price,
+            c.disc,
+            c.etd,
+            c.val as grand_tot,
+            c.unit,
+            c.dateneed,
+            c.valpph22,
+            c.valpph23,
+            c.valpph42
+        FROM
+            oms AS a
+            JOIN omd AS c on c.oms = a.oms 
+        WHERE
+            a.oms = '$oms'");
     }
     
 }
