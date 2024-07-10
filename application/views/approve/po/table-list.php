@@ -27,7 +27,7 @@
                     <center><i class="fas fa-check"></i></center>
                 <?php }
                 ?></b></td>
-                <td><a href="#" target="_blank"><button type="button" class="btn btn-primari"><i class="fas fa-print"></i></button></a></td>
+                <td><a href="<?= base_url('approve/print_po/'.$row->oms) ?>" target="_blank"><button type="button" class="btn btn-primari"><i class="fas fa-print"></i></button></a></td>
             </tr>
         <?php } ?>
     </tbody>
