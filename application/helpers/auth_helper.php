@@ -11,6 +11,7 @@ function is_logged_in()
 
         $queryMenu = $ci->db->get_where('modul', ['url_modul' => $menu])->row_array();
         $modul_id = $queryMenu['id_modul'];
+        // die(var_dump($queryMenu));
 
         $userAccess = $ci->db->get_where('user_access_modul', [
             'role_id' => $role_id,
@@ -18,9 +19,9 @@ function is_logged_in()
         ]);
         // die(var_dump($userAccess));
 
-        if ($userAccess->num_rows() < 1) {
-            redirect('Auth/blocked');
-        }
+        // if ($userAccess->num_rows() < 1) {
+        //     redirect('Auth/blocked');
+        // }
     }
 }
 
