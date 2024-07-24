@@ -73,4 +73,37 @@ class M_approve extends CI_Model
             a.oms = '$oms'");
     }
     
+    function get_prq() {
+        $db_cas = $this->load->database('cas', TRUE);
+        return $db_cas->query("SELECT
+            a.prq,
+            a.date,
+            a.cct,
+            a.remark,
+            a.categ_id 
+        FROM
+            prq AS a 
+        WHERE
+            a.DATE >= DATE_SUB( CURDATE(), INTERVAL 1 YEAR ) 
+        ORDER BY
+            a.prq DESC");
+    }
+
+    function get_detail_prq($no_prq) {
+        $db_cas = $this->load->database('cas', TRUE);
+        return $db_cas->query("SELECT
+            a.prq,
+            a.inv,
+            a.remark,
+            a.qty,
+            a.unit,
+            a.dateneed 
+        FROM
+            prd as a where a.prq = '$no_prq'");
+    }
+
+    function update_state($table,$data,$where) {
+        $db_cas = $this->load->database('cas', TRUE);
+        $db_cas->update($table, $data, $where);
+    }
 }

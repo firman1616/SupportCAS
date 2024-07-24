@@ -24,7 +24,7 @@
                 <td><?= $row->nopoc ?></td>
                 <td><?= $row->ketlain ?></td>
                 <td>
-                    <a href="<?= site_url('Sales/print_so/'.$row->okl) ?>" target="_blank"><button type="button" class="btn btn-primari"><i class="fas fa-print"></i></button></a>
+                    <a href="<?= site_url('Sales/print_so/'.$row->okl) ?>" target="_blank"><button type="button" class="btn btn-primary"><i class="fas fa-print"></i></button></a>
                 </td>
             </tr>
         <?php }
