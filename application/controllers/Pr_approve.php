@@ -43,14 +43,14 @@ class Pr_approve extends CI_Controller
         echo json_encode($data);
     }
 
-    function update_state() {
-        $table = 'prq';
-        $data = [
-            'approve' => '1',
-            'chtime' => $this->session->userdata('email'),
-        ];
-        $where = array
-    }
+    // function update_state() {
+    //     $table = 'prq';
+    //     $data = [
+    //         'approve' => '1',
+    //         'chtime' => $this->session->userdata('email'),
+    //     ];
+    //     $where = array
+    // }
 
     function print_po($oms)  {
         $data = [
