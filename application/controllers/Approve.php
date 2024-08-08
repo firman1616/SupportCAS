@@ -43,6 +43,7 @@ class Approve extends CI_Controller
         ];
         $name = $oms;
         $this->load->library('pdf');
+        // $this->load->view('approve/po/print-po', $data);
         $html = $this->load->view('approve/po/print-po', $data, TRUE);
         $this->pdf->createPDF($html, $name, false);
     }
