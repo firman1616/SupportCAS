@@ -43,7 +43,20 @@ class Approve extends CI_Controller
         ];
         $name = $oms;
         $this->load->library('pdf');
+        // $this->load->view('approve/po/print-po', $data);
         $html = $this->load->view('approve/po/print-po', $data, TRUE);
         $this->pdf->createPDF($html, $name, false);
+    }
+
+    public function update_state() {
+        // Pastikan metode request adalah POST
+        // Ambil ID OMS dari POST data
+        $oms = $this->input->post('oms');
+
+        // Update data dengan memanggil fungsi di model
+        $this->approve->update_aprov($oms);
+
+        // Redirect kembali ke halaman sebelumnya atau halaman tertentu
+        redirect($_SERVER['HTTP_REFERER']);
     }
 }

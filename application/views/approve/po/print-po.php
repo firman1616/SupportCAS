@@ -256,7 +256,9 @@ foreach ($header as $row) {
                     <p class="s4" style="padding-top: 3pt;text-indent: 0pt;text-align: center;">Total Harga</p>
                 </td>
             </tr>
-            <?php foreach ($det_pos as $row) { 
+            <?php 
+            $sumpph = 0;
+            foreach ($det_pos as $row) { 
                 $grand = $row->grand_tot; 
                 $pph22 = $row->valpph22;
                 $pph23 = $row->valpph23;
@@ -265,11 +267,14 @@ foreach ($header as $row) {
             ?>
 
             <?php 
-            if ($ppn == '0') {
-                $pajak = number_format(0,2);
+            // $pajak = 0;
+            if (!is_numeric($ppn)) {
+                // Handle the error, set default values, or log a message
+                $pajak = 0;  // Example default value
             }else {
-                $pajak = number_format($total_all * 0.11,2);
+                $pajak = $total_all * 0.11;
             }
+            $grand_all =  $total_all + $pajak + $sumpph;
             ?>
                 
             <tr style="height:15pt">
@@ -321,7 +326,7 @@ foreach ($header as $row) {
                     <p class="s5" style="padding-top: 3pt;padding-right: 3pt;text-indent: 0pt;text-align: right;">PPN</p>
                 </td>
                 <td style="width:75pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
-                    <p class="s5" style="padding-top: 3pt;padding-right: 3pt;text-indent: 0pt;text-align: right;"><?= $pajak ?> </p>
+                    <p class="s5" style="padding-top: 3pt;padding-right: 3pt;text-indent: 0pt;text-align: right;"><?= number_format($pajak,2) ?> </p>
                 </td>
             </tr>
             <tr>
@@ -337,7 +342,7 @@ foreach ($header as $row) {
                     <p class="s5" style="padding-top: 3pt;padding-right: 3pt;text-indent: 0pt;text-align: right;">Total</p>
                 </td>
                 <td style="width:75pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
-                    <p class="s5" style="padding-top: 3pt;padding-right: 3pt;text-indent: 0pt;text-align: right;"><?= number_format($total_all + $pajak + $sumpph,2) ?> </p>
+                    <p class="s5" style="padding-top: 3pt;padding-right: 3pt;text-indent: 0pt;text-align: right;"><?= number_format($grand_all,2) ?> </p>
                 </td>
             </tr>
         </table>

@@ -17,11 +17,12 @@ class M_approve extends CI_Model
             a.state,
             a.chusr,
             a.ppn,
+            a.aprov,
             b.sub,
             b.name as nama_sup
         FROM
             oms as a
-        JOIN sub as b on b.sub = a.sub
+        LEFT JOIN sub as b on b.sub = a.sub
         WHERE
             a.oms LIKE '%pos%'
             and a.DATE >= DATE_SUB( CURDATE(), INTERVAL 1 YEAR)
@@ -105,5 +106,18 @@ class M_approve extends CI_Model
     function update_state($table,$data,$where) {
         $db_cas = $this->load->database('cas', TRUE);
         $db_cas->update($table, $data, $where);
+    }
+
+    // update approve po
+    public function update_aprov($oms) {
+        // Data yang akan diupdate
+        $db_cas = $this->load->database('cas', TRUE);
+        $data = array(
+            'aprov' => 1 // Update aprov menjadi 1
+        );
+
+        // Update tabel
+        $this->db->where('oms', $oms);
+        return $db_cas->update('oms', $data); // Ganti `table_name` dengan nama tabel yang sesuai
     }
 }
