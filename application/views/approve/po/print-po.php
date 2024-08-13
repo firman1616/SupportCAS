@@ -268,11 +268,12 @@ foreach ($header as $row) {
 
             <?php 
             // $pajak = 0;
-            if (!is_numeric($ppn)) {
+            
+            if ($ppn == 0) {
                 // Handle the error, set default values, or log a message
                 $pajak = 0;  // Example default value
             }else {
-                $pajak = $total_all * 0.11;
+                $pajak = $total_all *  0.11;
             }
             $grand_all =  $total_all + $pajak + $sumpph;
             ?>
@@ -312,7 +313,7 @@ foreach ($header as $row) {
                     <p class="s5" style="padding-top: 3pt;padding-left: 3pt;text-indent: 0pt;text-align: left;">Catatan :</p>
                 </td>
                 <td rowspan="4" style="width:100pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt" colspan="6" >
-                    <p class="s5" style="padding-top: 3pt;padding-left: 3pt;text-indent: 0pt;text-align: left;"><?= $note ?> </p>
+                    <p class="s5" style="padding-top: 3pt;padding-left: 3pt;text-indent: 0pt;text-align: left;"><?= $note ?></p>
                 </td>
                 <td style="width:80pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
                     <p class="s5" style="padding-top: 3pt;padding-right: 3pt;text-indent: 0pt;text-align: right;">Subtotal</p>
