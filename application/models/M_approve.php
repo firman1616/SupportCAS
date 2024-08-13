@@ -45,7 +45,7 @@ class M_approve extends CI_Model
             b.top
         FROM
             oms AS a
-            JOIN sub AS b ON b.sub = a.sub 
+            LEFT JOIN sub AS b ON b.sub = a.sub 
         WHERE
             a.oms = '$oms'");
     }
