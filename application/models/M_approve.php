@@ -7,7 +7,8 @@ class M_approve extends CI_Model
         parent::__construct();
     }
 
-    function get_pos() {
+    function get_pos()
+    {
         $db_cas = $this->load->database('cas', TRUE);
         return $db_cas->query("SELECT
             a.oms,
@@ -29,7 +30,8 @@ class M_approve extends CI_Model
         ORDER BY a.oms DESC");
     }
 
-    function print_pos($oms) {
+    function print_pos($oms)
+    {
         $db_cas = $this->load->database('cas', TRUE);
         return $db_cas->query("SELECT
             a.oms,
@@ -51,7 +53,8 @@ class M_approve extends CI_Model
             a.oms = '$oms'");
     }
 
-    function det_pos($oms) {
+    function det_pos($oms)
+    {
         $db_cas = $this->load->database('cas', TRUE);
         return $db_cas->query("SELECT
             a.oms,
@@ -74,24 +77,31 @@ class M_approve extends CI_Model
         WHERE
             a.oms = '$oms'");
     }
-    
-    function get_prq() {
+
+    function get_prq()
+    {
         $db_cas = $this->load->database('cas', TRUE);
         return $db_cas->query("SELECT
             a.prq,
             a.date,
             a.cct,
             a.remark,
-            a.categ_id 
+            a.categ_id,
+            a.aprov 
         FROM
             prq AS a 
         WHERE
-            a.DATE >= DATE_SUB( CURDATE(), INTERVAL 1 YEAR ) 
+            a.date >= DATE_SUB( CURDATE(), INTERVAL 1 YEAR ) 
         ORDER BY
-            a.prq DESC");
+            CASE 
+                WHEN a.aprov = 0 THEN 0
+                ELSE 1
+            END,
+            a.date DESC");
     }
 
-    function get_detail_prq($no_prq) {
+    function get_detail_prq($no_prq)
+    {
         $db_cas = $this->load->database('cas', TRUE);
         return $db_cas->query("SELECT
             a.prq,
@@ -104,13 +114,15 @@ class M_approve extends CI_Model
             prd as a where a.prq = '$no_prq'");
     }
 
-    function update_state($table,$data,$where) {
+    function update_state($table, $data, $where)
+    {
         $db_cas = $this->load->database('cas', TRUE);
         $db_cas->update($table, $data, $where);
     }
 
     // update approve po
-    public function update_aprov($oms) {
+    public function update_aprov($oms)
+    {
         // Data yang akan diupdate
         $db_cas = $this->load->database('cas', TRUE);
         $data = array(
@@ -120,5 +132,18 @@ class M_approve extends CI_Model
         // Update tabel
         $this->db->where('oms', $oms);
         return $db_cas->update('oms', $data); // Ganti `table_name` dengan nama tabel yang sesuai
+    }
+
+    public function update_prq($prq)
+    {
+        // Data yang akan diupdate
+        $db_cas = $this->load->database('cas', TRUE);
+        $data = array(
+            'aprov' => 1 // Update aprov menjadi 1
+        );
+
+        // Update tabel
+        $this->db->where('prq', $prq);
+        return $db_cas->update('prq', $data); // Ganti `table_name` dengan nama tabel yang sesuai
     }
 }

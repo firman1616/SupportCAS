@@ -21,9 +21,9 @@ class Pr_approve extends CI_Controller
 
             'name'    => $this->session->userdata('name'),
             'title' => 'PR Approve',
-            'conten' => 'approve/pr/index',
+            'conten' => 'pr/index',
             'footer_js' => array('assets/js/prjs.js'),
-            'pr_list' => $this->approve->get_prq()->result(),
+            // 'pr_list' => $this->approve->get_prq()->result(),
             // 'pr_detail' => $this->approve->get_detail_prq($no_prq)
             // 'user' => $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array()
         ];
@@ -35,7 +35,7 @@ class Pr_approve extends CI_Controller
     {
         $data['pr_list'] = $this->approve->get_prq()->result();
         // $data['pr_det'] = $this->approve->get_detail_prq()->result();
-        echo json_encode($this->load->view('approve/pr/table-list',$data, false));
+        echo json_encode($this->load->view('pr/table-list',$data, false));
     }
 
     public function getDetail($no_prq) {
@@ -43,14 +43,17 @@ class Pr_approve extends CI_Controller
         echo json_encode($data);
     }
 
-    // function update_state() {
-    //     $table = 'prq';
-    //     $data = [
-    //         'approve' => '1',
-    //         'chtime' => $this->session->userdata('email'),
-    //     ];
-    //     $where = array
-    // }
+    public function update_state() {
+        // Pastikan metode request adalah POST
+        // Ambil ID OMS dari POST data
+        $prq = $this->input->post('prq');
+
+        // Update data dengan memanggil fungsi di model
+        $this->approve->update_prq($prq);
+
+        // Redirect kembali ke halaman sebelumnya atau halaman tertentu
+        redirect($_SERVER['HTTP_REFERER']);
+    }
 
     function print_po($oms)  {
         $data = [
@@ -60,8 +63,8 @@ class Pr_approve extends CI_Controller
         ];
         $name = $oms;
         $this->load->library('pdf');
-        $this->load->view('approve/po/print-po', $data, TRUE)
-        $html = $this->load->view('approve/po/print-po', $data, TRUE);
+        // $this->load->view('po/print-po', $data, TRUE);s
+        $html = $this->load->view('po/print-po', $data, TRUE);
         $this->pdf->createPDF($html, $name, false);
     }
 }
