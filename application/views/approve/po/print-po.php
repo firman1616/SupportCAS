@@ -10,6 +10,7 @@ foreach ($header as $row) {
     $nama_sup = $row->nama_sup;
     $top = $row->top;
     $note = $row->addnote;
+    $alamat = $row->address;
 }
 ?>
 <html xmlns="" xml:lang="id" lang="id">
@@ -211,7 +212,7 @@ foreach ($header as $row) {
             <tr>
                 <td width="300" rowspan="2">
                     <h3 style="padding-top: 4pt;text-indent: 0pt;text-align: left;">
-                        <span class="s1">Jl.HM.ASHARI RT.006/001 - BOGOR
+                        <span class="s1"><?= $alamat ?>
                         </span>
                     </h3>
                 </td>
