@@ -42,7 +42,8 @@ class M_approve extends CI_Model
             a.addnote,
             b.sub,
             b.NAME AS nama_sup,
-            b.top
+            b.top,
+            b.address
         FROM
             oms AS a
             LEFT JOIN sub AS b ON b.sub = a.sub 
