@@ -55,16 +55,16 @@ class Pr_approve extends CI_Controller
         redirect($_SERVER['HTTP_REFERER']);
     }
 
-    function print_po($oms)  {
+    function print_pr($prq)  {
         $data = [
             'title' => 'Print PO',
-            'header' => $this->approve->print_pos($oms)->result(),
-            'det_pos' => $this->approve->det_pos($oms)->result(),
+            'header_prq' => $this->approve->print_prq($prq)->result(),
+            'det_prq' => $this->approve->det_prq($prq)->result(),
         ];
-        $name = $oms;
+        $name = $prq;
         $this->load->library('pdf');
         // $this->load->view('po/print-po', $data, TRUE);s
-        $html = $this->load->view('po/print-po', $data, TRUE);
+        $html = $this->load->view('pr/print-pr', $data, TRUE);
         $this->pdf->createPDF($html, $name, false);
     }
 }
