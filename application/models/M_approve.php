@@ -146,4 +146,40 @@ class M_approve extends CI_Model
         $this->db->where('prq', $prq);
         return $db_cas->update('prq', $data); // Ganti `table_name` dengan nama tabel yang sesuai
     }
+
+    function print_prq($prq)
+    {
+        $db_cas = $this->load->database('cas', TRUE);
+        return $db_cas->query("SELECT
+            a.prq,
+            a.date,
+            a.aprov,
+            a.remark,
+            a.period,
+            a.cct
+        FROM
+            prq AS a
+        WHERE
+            a.prq = '$prq'");
+    }
+
+    function det_prq($prq)
+    {
+        $db_cas = $this->load->database('cas', TRUE);
+        return $db_cas->query("SELECT
+            b.inv,
+            b.loc,
+            b.remark AS ket_det,
+            b.spesifikasi,
+            b.qty,
+            b.unit,
+            b.cct AS cct_det,
+            b.etd,
+            b.dept,
+            b.dateneed 
+        FROM
+            prd AS b 
+        WHERE
+            b.prq = '$prq'");
+    }
 }
