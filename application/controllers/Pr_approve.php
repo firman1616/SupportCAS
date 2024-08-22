@@ -55,6 +55,12 @@ class Pr_approve extends CI_Controller
         redirect($_SERVER['HTTP_REFERER']);
     }
 
+    function cancel_update_state()  {
+        $cancel_prq = $this->input->post('cancel_prq');
+        $this->approve->cancel_approve_whs($cancel_prq);
+        redirect($_SERVER['HTTP_REFERER']);
+    }
+
     function print_pr($prq)  {
         $data = [
             'title' => 'Print PO',
