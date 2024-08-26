@@ -126,7 +126,8 @@ class M_approve extends CI_Model
         // Data yang akan diupdate
         $db_cas = $this->load->database('cas', TRUE);
         $data = array(
-            'aprov' => 1 // Update aprov menjadi 1
+            'aprov' => 1,
+            'state' => 'approved'
         );
 
         // Update tabel
