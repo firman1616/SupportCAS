@@ -135,6 +135,12 @@ class M_approve extends CI_Model
         return $db_cas->update('oms', $data); // Ganti `table_name` dengan nama tabel yang sesuai
     }
 
+    function update_prq2($prq) {
+        $db_cas = $this->load->database('cas', TRUE);
+        $apdate = date('d/m/Y h:i');
+        return $db_cas->query("UPDATE prq set aprov = '1', categ_id = 'Approved', apdate = '$apdate' WHERE prq = '$prq'");
+    }
+
     public function update_prq($prq)
     {
         // Data yang akan diupdate
