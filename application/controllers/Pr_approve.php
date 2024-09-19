@@ -50,7 +50,7 @@ class Pr_approve extends CI_Controller
         $prq = $this->input->post('prq');
 
         // Update data dengan memanggil fungsi di model
-        $this->approve->update_prq($prq);
+        $this->approve->update_prq2($prq);
 
         // Redirect kembali ke halaman sebelumnya atau halaman tertentu
         redirect($_SERVER['HTTP_REFERER']);
