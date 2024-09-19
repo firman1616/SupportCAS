@@ -20,19 +20,19 @@ class M_PRJ extends CI_Model
     {
         // Modifikasi bagian select dan join sesuai dengan query custom
         $this->db_cas->select('
-        a.rma,
-        a.sub,
-        a.remark,
-        a.period,
-        a.aprov,
-        a.date,
-        b.inv,
-        b.loc,
-        b.remark as keterangan,
-        b.qty,
-        b.unit,
-        b.etd
-    ');
+            a.rma,
+            a.sub,
+            a.remark,
+            a.period,
+            a.aprov,
+            a.date,
+            b.inv,
+            b.loc,
+            b.remark as keterangan,
+            b.qty,
+            b.unit,
+            b.etd
+        ');
         $this->db_cas->from('rma AS a');
         $this->db_cas->join('rmb AS b', 'b.rma = a.rma', 'left');
 

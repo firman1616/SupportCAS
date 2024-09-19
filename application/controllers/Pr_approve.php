@@ -11,6 +11,7 @@ class Pr_approve extends CI_Controller
         is_logged_in();
 
         $this->load->model('M_approve','approve');
+        date_default_timezone_set('Asia/Jakarta');
     }
 
 

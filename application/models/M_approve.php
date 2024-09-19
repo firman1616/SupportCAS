@@ -141,7 +141,8 @@ class M_approve extends CI_Model
         $db_cas = $this->load->database('cas', TRUE);
         $data = array(
             'aprov' => 1, // Update aprov menjadi 1
-            'categ_id' => 'Approved'
+            'categ_id' => 'Approved',
+            'apdate' => date('d/m/Y h:i')
         );
 
         // Update tabel
