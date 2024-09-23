@@ -54,7 +54,7 @@ class Approve extends CI_Controller
         $oms = $this->input->post('oms');
 
         // Update data dengan memanggil fungsi di model
-        $this->approve->update_aprov($oms);
+        $this->approve->update_approve2($oms);
 
         // Redirect kembali ke halaman sebelumnya atau halaman tertentu
         redirect($_SERVER['HTTP_REFERER']);
