@@ -121,6 +121,12 @@ class M_approve extends CI_Model
     }
 
     // update approve po
+    function update_approve2($oms){
+        $db_cas = $this->load->database('cas', TRUE);
+        $apdate = date('d/m/Y h:i');
+        return $db_cas->query("UPDATE oms set aprov = '1', state = 'approved' WHERE oms = '$oms'");
+    }
+
     public function update_aprov($oms)
     {
         // Data yang akan diupdate
