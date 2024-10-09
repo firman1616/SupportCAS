@@ -34,7 +34,7 @@ class Pr_approve extends CI_Controller
 
     function tablePR()
     {
-        $data['pr_list'] = $this->approve->get_prq()->result();
+        $data['pr_list'] = $this->approve->get_prq2()->result();
         // $data['pr_det'] = $this->approve->get_detail_prq()->result();
         echo json_encode($this->load->view('pr/table-list',$data, false));
     }

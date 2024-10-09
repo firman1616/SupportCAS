@@ -16,7 +16,6 @@
         $no = 1;
         foreach ($pr_list as $row) { ?>
             <tr>
-                <!-- <td><?= $x++; ?></td> -->
                 <td><?= $row->prq ?></td>
                 <td><?= date('d/m/Y', strtotime($row->date)) ?></td>
                 <td><?= $row->cct ?></td>
