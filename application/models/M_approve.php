@@ -78,6 +78,24 @@ class M_approve extends CI_Model
             a.oms = '$oms'");
     }
 
+    function get_prq2()
+    {
+        $db_cas = $this->load->database('cas', TRUE);
+        return $db_cas->query("SELECT
+            a.prq,
+            a.date,
+            a.cct,
+            a.remark,
+            a.categ_id,
+            a.aprov 
+        FROM
+            prq AS a 
+        WHERE
+            a.date >= DATE_SUB( CURDATE(), INTERVAL 1 YEAR ) 
+        ORDER BY
+            a.prq DESC");
+    }
+
     function get_prq()
     {
         $db_cas = $this->load->database('cas', TRUE);
