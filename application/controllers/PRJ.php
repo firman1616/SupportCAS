@@ -78,7 +78,7 @@ class PRJ extends CI_Controller
     public function update_state()
     {
         $prj = $this->input->post('prj');
-        $this->prj->update_aprov($prj);
+        $this->prj->update_approve2($prj);
         redirect($_SERVER['HTTP_REFERER']);
     }
 

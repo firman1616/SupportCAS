@@ -142,6 +142,12 @@ class M_PRJ extends CI_Model
         return $db_cas->update('rma', $data); // Ganti `table_name` dengan nama tabel yang sesuai
     }
 
+    function update_approve2($rma)  {
+        $db_cas = $this->load->database('cas', TRUE);
+        $apdate = date('d/m/Y h:i');
+        return $db_cas->query("UPDATE rma set aprov = '1' WHERE rma = '$rma'");
+    }
+
     function print_prj($prj){
         $db_cas = $this->load->database('cas', TRUE);
         return $db_cas->query("SELECT
