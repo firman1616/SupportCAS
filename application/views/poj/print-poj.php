@@ -1,3 +1,17 @@
+<?php 
+foreach ($header_poj as $row) {
+    $por = $row->por;
+    $date = $row->date;
+    $curancy = $row->cur;
+    $kurs = $row->kurs;
+    $ppn = $row->ppn;
+    $kode_sup = $row->kode_sup;
+    $nama_sup = $row->nama_sup;
+    $alamat = $row->alamat;
+    $remark = $row->remark;
+    $val = $row->val;
+}
+?>
 <html xmlns="" xml:lang="id" lang="id">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -164,7 +178,7 @@
                     <h1 style="padding-top: 4pt; padding-left: 0pt; text-indent: 0pt; line-height: 14pt; text-align: center; margin-bottom: 5px;">PO Jasa</h1>
                     <table width="200" class="no_soe">
                         <tr>
-                            <td style="text-align: center; font-weight: bold;">POJ-2408-000032</td>
+                            <td style="text-align: center; font-weight: bold;"><?= $por ?></td>
                         </tr>
                     </table>
     
@@ -178,41 +192,41 @@
         </table>
         <table style="margin-left: 9pt;">
             <tr>
-                <td width="80">
+                <td width="70">
                     <h3 style="padding-top: 4pt;padding-left: 5pt;text-indent: 0pt;text-align: left;">Kirim ke</h3>
                 </td>
-                <td>
+                <td width="5">
                     <h3 style="padding-top: 4pt;text-indent: 0pt;text-align: center;">:</h3>
                 </td>
-                <td>
+                <td width="50">
                     <h3 style="padding-top: 4pt;text-indent: 0pt;text-align: left;">
-                        <span class="s1">(2110032) CAIRNHILL SERVICHE INTI PT
+                        <span class="s1">(<?= $kode_sup ?>) <?= $nama_sup ?>
                         </span>
                     </h3>
                 </td>
-                <td width="90"><h3 style="padding-top: 4pt;text-indent: 0pt;text-align: left;">Tanggal</h3></td>
+                <td width="70"><h3 style="padding-top: 4pt;text-indent: 0pt;text-align: left;">Tanggal</h3></td>
                 <td><h3 style="padding-top: 4pt; text-indent: 0pt; text-align: center;">:</h3></td>
-                <td width="100" colspan="4"><h3 style="padding-top: 4pt; text-indent: 0pt; text-align: left;"> 14/08/2024</h3></td>
+                <td width="100" colspan="4"><h3 style="padding-top: 4pt; text-indent: 0pt; text-align: left;">  <?= date('d/m/Y', strtotime($date)) ?></h3></td>
             </tr>
             <tr>
-                <td width="80">
+                <td width="70">
                     <h3 style="padding-top: 4pt;padding-left: 5pt;text-indent: 0pt;text-align: left;">Alamat</h3>
                 </td>
-                <td>
+                <td width="5">
                     <h3 style="padding-top: 4pt;text-indent: 0pt;text-align: center;">:</h3>
                 </td>
-                <td width="400">
+                <td width="300">
                     <h3 style="padding-top: 4pt;text-indent: 0pt;text-align: left;">
-                        <span class="s1">Ruko Thamrin Block E-1, Jl. M. H. Thamrin, Bekasi Indonesia - Bekasi - FAX 021-8973263 
+                        <span class="s1"><?= $alamat ?> 
                         </span>
                     </h3>
                 </td>
                 <td><h3 style="padding-top: 4pt;text-indent: 0pt;text-align: left;">Currency</h3></td>
                 <td><h3 style="padding-top: 4pt; text-indent: 0pt; text-align: center;">:</h3></td>
-                <td><h3 style="padding-top: 4pt; text-indent: 0pt; text-align: left;"> IDR</h3></td>
+                <td><h3 style="padding-top: 4pt; text-indent: 0pt; text-align: left;"> <?= $curancy ?></h3></td>
                 <td><h3 style="padding-top: 4pt;text-indent: 0pt;text-align: left;">Kurs</h3></td>
                 <td><h3 style="padding-top: 4pt; text-indent: 0pt; text-align: center;">:</h3></td>
-                <td><h3 style="padding-top: 4pt; text-indent: 0pt; text-align: left;">1.00</h3></td>
+                <td><h3 style="padding-top: 4pt; text-indent: 0pt; text-align: left;"> <?= $kurs ?></h3></td>
             </tr>
         </table>
         <br>
@@ -246,77 +260,104 @@
                     <p class="s4" style="padding-top: 3pt;text-indent: 0pt;text-align: center;">Keterangan</p>
                 </td>
             </tr>
+            <?php 
+                $i=1;
+                $sumpph = 0;
+                foreach ($det_poj as $row) { 
+                    $grand = $row->val; 
+                    $pph22 = $row->valpph22;
+                    $pph23 = $row->valpph23;
+                    $pph42 = $row->valpph42;
+                    $sumpph = $pph22 + $pph23 + $pph42;
+            ?>
+            <?php 
+            // $pajak = 0;
+            
+            if ($ppn == 0) {
+                // Handle the error, set default values, or log a message
+                $pajak = 0;  // Example default value
+            }else {
+                $pajak = $val *  0.11;
+            }
+            $grand_all =  $val + $pajak + $sumpph;
+            ?>
+
             <tr style="height:15pt">
-                <td style="width:30pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
-                    <p class="s5" style="padding-top: 3pt;text-indent: 0pt;text-align: center;">1</p>
+                <td style="width:20pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
+                    <p class="s5" style="padding-top: 3pt;text-indent: 0pt;text-align: center;"><?= $i++;  ?></p>
                 </td>
-                <td style="width:60pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
-                    <p class="s5" style="padding-top: 3pt;text-indent: 0pt;text-align: center;">911010238</p>
+                <td style="width:70pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
+                    <p class="s5" style="padding-top: 3pt;text-indent: 0pt;text-align: center;"><?= $row->inv ?></p>
                 </td>
                 <td style="width:100pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
-                    <p class="s5" style="padding-top: 3pt;padding-left: 3pt;text-indent: 0pt;text-align: left;">JASA KALIBRASI MESIN X-RAY</p>
+                    <p class="s5" style="padding-top: 3pt;padding-left: 3pt;text-indent: 0pt;text-align: left;"><?= $row->ket ?></p>
                 </td>
-                <td style="width:30pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
-                    <p class="s5" style="padding-top: 3pt;text-indent: 0pt;text-align: center;">1.00</p>
+                <td style="width:47pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
+                    <p class="s5" style="padding-top: 3pt;text-indent: 0pt;text-align: center;"><?= number_format($row->qty,2) ?></p>
                 </td>
                 <td style="width:35pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
-                    <p class="s5" style="padding-top: 3pt;text-indent: 0pt;text-align: center;">PCE</p>
-                </td>
-                <td style="width:70pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
-                    <p class="s5" style="padding-top: 3pt;padding-right: 3pt;text-indent: 0pt;text-align: right;">3,500,000.00</p>
+                    <p class="s5" style="padding-top: 3pt;text-indent: 0pt;text-align: center;"><?= $row->unit ?></p>
                 </td>
                 <td style="width:60pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
-                    <p class="s5" style="padding-top: 3pt;padding-right: 3pt;text-indent: 0pt;text-align: right;">70,000.00</p>
+                    <p class="s5" style="padding-top: 3pt;padding-right: 3pt;text-indent: 0pt;text-align: right;"><?= number_format($row->price,2) ?></p>
+                </td>
+                <td style="width:60pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
+                    <p class="s5" style="padding-top: 3pt;padding-right: 3pt;text-indent: 0pt;text-align: right;"><?= number_format($sumpph,2) ?></p>
                 </td>
                 <td style="width:70pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
-                    <p class="s5" style="padding-top: 3pt;padding-right: 3pt;text-indent: 0pt;text-align: right;">3,500,000.00</p>
+                    <p class="s5" style="padding-top: 3pt;padding-right: 3pt;text-indent: 0pt;text-align: right;"><?= number_format($row->val,2) ?></p>
                 </td>
-                <td rowspan="6" style="width:102pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
-                    <p class="s5" style="padding-top: 3pt;padding-left: 3pt; padding-right: 3pt;text-indent: 0pt;text-align: left;">ANRITSU KD7405AW</p>
+                <td style="width:105pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
+                    <p class="s5" style="padding-top: 3pt;padding-left: 3pt; padding-right: 3pt;text-indent: 0pt;text-align: left;"><?= $row->etd ?></p>
                 </td>
             </tr>
+            <?php
+            }
+            ?>
             <tr>
                 <td rowspan="5" colspan="6" style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:0pt;border-right-style:solid;border-right-width:1pt">
                     <p class="s5" style="padding-top: 3pt;padding-left: 3pt;text-indent: 0pt;text-align: left;">Catatan : <br>
-                        KALIBRASI MESIN METAL DETECTOR DAN MESIN X-RAY PLANT A </p>
+                    <?= $remark ?>
                 </td>
-                <td style="width:80pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
+                <td style="width:60pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
                     <p class="s5" style="padding-top: 3pt;padding-right: 3pt;text-indent: 0pt;text-align: right;">Subtotal</p>
                 </td>
-                <td style="width:75pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
-                    <p class="s5" style="padding-top: 3pt;padding-right: 3pt;text-indent: 0pt;text-align: right;">3,500,000.00</p>
+                <td style="width:70pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
+                    <p class="s5" style="padding-top: 3pt;padding-right: 3pt;text-indent: 0pt;text-align: right;"><?= number_format($val,2) ?></p>
+                </td>
+                <td rowspan="5" style="width:70pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
                 </td>
             </tr>
             <tr>
-                <td style="width:80pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
+                <td style="width:60pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
                     <p class="s5" style="padding-top: 3pt;padding-right: 3pt;text-indent: 0pt;text-align: right;">PPN</p>
                 </td>
-                <td style="width:75pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
-                    <p class="s5" style="padding-top: 3pt;padding-right: 3pt;text-indent: 0pt;text-align: right;">385,000.00 </p>
+                <td style="width:70pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
+                    <p class="s5" style="padding-top: 3pt;padding-right: 3pt;text-indent: 0pt;text-align: right;"><?= number_format($pajak,2) ?> </p>
                 </td>
             </tr>
             <tr>
-                <td style="width:80pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
+                <td style="width:60pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
                     <p class="s5" style="padding-top: 3pt;padding-right: 3pt;text-indent: 0pt;text-align: right;">PPH</p>
                 </td>
-                <td style="width:75pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
-                    <p class="s5" style="padding-top: 3pt;padding-right: 3pt;text-indent: 0pt;text-align: right;">70,000.00</p>
+                <td style="width:70pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
+                    <p class="s5" style="padding-top: 3pt;padding-right: 3pt;text-indent: 0pt;text-align: right;"><?= number_format($sumpph,2) ?></p>
                 </td>
             </tr>
             <tr>
-                <td style="width:80pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
+                <td style="width:60pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
                     <p class="s5" style="padding-top: 3pt;padding-right: 3pt;text-indent: 0pt;text-align: right;">PPNP</p>
                 </td>
-                <td style="width:75pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
+                <td style="width:70pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
                     <p class="s5" style="padding-top: 3pt;padding-right: 3pt;text-indent: 0pt;text-align: right;">0.00</p>
                 </td>
             </tr>
             <tr>
-                <td style="width:80pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
+                <td style="width:60pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
                     <p class="s5" style="padding-top: 3pt;padding-right: 3pt;text-indent: 0pt;text-align: right;">Total</p>
                 </td>
-                <td style="width:75pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
-                    <p class="s5" style="padding-top: 3pt;padding-right: 3pt;text-indent: 0pt;text-align: right;">3,815,000.00</p>
+                <td style="width:70pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
+                    <p class="s5" style="padding-top: 3pt;padding-right: 3pt;text-indent: 0pt;text-align: right;"><?= number_format($grand_all,2) ?></p>
                 </td>
             </tr>
             <tr>
@@ -326,7 +367,7 @@
                 <td colspan="4" style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
                     <p class="s4" style="padding-top: 3pt;padding-left: 3pt;text-indent: 0pt;text-align: center;">Diterima oleh :</p>
                 </td>
-                <td colspan="3" style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
+                <td colspan="2" style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
                     <p class="s4" style="padding-top: 3pt;padding-left: 3pt;text-indent: 0pt;text-align: center;">Disetujui oleh :</p>
                 </td>
             </tr>
@@ -338,7 +379,7 @@
                 <td colspan="4" style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
                     <br><br><br>
                 </td>
-                <td colspan="3" style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
+                <td colspan="2" style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
                     <br><br><br>
                     <p class="s5" style="padding-top: 3pt;padding-left: 3pt;text-indent: 0pt;text-align: center;">Yohanes Yoelianto</p>
                 </td>

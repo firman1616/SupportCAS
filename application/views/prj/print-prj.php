@@ -189,7 +189,7 @@
                 <td width="50"><h3 style="padding-top: 4pt; text-indent: 0pt; text-align: left;"> <?= $date ?></h3></td>
             </tr>
         </table>
-        <table style="border-collapse: collapse; margin-left: 5pt;">
+        <table style="border-collapse: collapse; margin-left: 9pt;">
         <tr>
             <td style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
                 <p class="s4" style="padding-top: 3pt;text-indent: 0pt;text-align: center;">No</p>
@@ -237,7 +237,7 @@
             <?php }
             ?>
             <tr>
-                <td colspan="7" style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
+                <td colspan="6" style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
                     <p class="s5" style="padding-top: 3pt;padding-left: 3pt;text-indent: 0pt;text-align: left;">Keterangan : <?= $keterangan ?></p> <br>
                 </td>
             </tr>
