@@ -40,13 +40,14 @@ class M_POJ extends CI_Model
             DATE(a.date) AS date, 
             DATE(a.duedate) AS duedate, 
             a.sub as kode_sup, 
-            a.remark AS ket, 
+            a.remark, 
             b.name AS nama_sup,
             b.address as alamat,
             a.cur,
             a.kurs,
             a.ppn,
             a.ppnbebas,
+            a.val,
             a.ppnganti 
         FROM por a
         LEFT JOIN sub b ON b.sub = a.sub 
@@ -65,6 +66,10 @@ class M_POJ extends CI_Model
             a.price,
             a.valpph23,
             a.val,
+            a.etd,
+            a.valpph22,
+            a.valpph23,
+            a.valpph42,
             b.name as nama_inv 
         FROM
             pord a
