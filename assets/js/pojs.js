@@ -40,7 +40,7 @@ function tablePO() {
             $('#poTable').DataTable({
                 "processing": true,
                 "responsive": true,
-                "order": [[1, "desc"]]
+                "order": [[5, "desc"]]
             });
         }
     });

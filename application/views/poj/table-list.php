@@ -22,7 +22,10 @@
         <td>
             <?php 
             if ($row->aprov != 1) { ?>
-                <button type="button" class="btn btn-success" title="Approve"><i class="fa fa-check"></i></button>
+            <form method="post" action="<?= base_url('POJ/update_state') ?>" style="display:inline;">
+                <input type="hidden" name="poj" value="<?= $row->por ?>">
+                <button type="submit" class="btn btn-success" title="Approve"><i class="fa fa-check"></i></button>
+            </form>
             <?php }
             ?>
             <a href="<?= base_url('POJ/print_poj/'.$row->por) ?>" target="_blank" type="button" class="btn btn-primary" title="cetak POJ"><i class="fa fa-print"></i></a>

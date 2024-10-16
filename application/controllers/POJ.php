@@ -46,10 +46,10 @@ class POJ extends CI_Controller
     public function update_state() {
         // Pastikan metode request adalah POST
         // Ambil ID OMS dari POST data
-        $prq = $this->input->post('prq');
+        $poj = $this->input->post('poj');
 
         // Update data dengan memanggil fungsi di model
-        $this->approve->update_prq2($prq);
+        $this->poj->update_status($poj);
 
         // Redirect kembali ke halaman sebelumnya atau halaman tertentu
         redirect($_SERVER['HTTP_REFERER']);

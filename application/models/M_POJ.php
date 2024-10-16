@@ -23,7 +23,7 @@ class M_POJ extends CI_Model
         FROM por a
         LEFT JOIN sub b ON b.sub = a.sub
         WHERE a.date >= DATE_SUB( CURDATE(), INTERVAL 4 MONTH )
-        ORDER BY a.date DESC;
+        ORDER BY a.aprov DESC;
         ");
     }
 
@@ -75,5 +75,10 @@ class M_POJ extends CI_Model
             pord a
         left join inv b on b.inv = a.inv
         where a.por = '$poj'");
+    }
+
+    function update_status($poj) {
+        $db_cas = $this->load->database('cas', TRUE);
+        return $db_cas->query("UPDATE por set aprov = '1' WHERE por = '$poj'");
     }
 }
