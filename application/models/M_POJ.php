@@ -23,7 +23,7 @@ class M_POJ extends CI_Model
         FROM por a
         LEFT JOIN sub b ON b.sub = a.sub
         WHERE a.date >= DATE_SUB( CURDATE(), INTERVAL 4 MONTH )
-        ORDER BY a.aprov DESC;
+        ORDER BY a.date DESC;
         ");
     }
 
