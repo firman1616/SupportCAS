@@ -15,7 +15,7 @@ function tablePR() {
             $('#prTable').DataTable({
                 "processing": true,
                 "responsive": true,
-                "order": [[1, "desc"]]
+                "order": [[0, "desc"]]
             });
         }
     });
