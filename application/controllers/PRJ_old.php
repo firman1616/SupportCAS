@@ -32,8 +32,47 @@ class PRJ extends CI_Controller
 
     function tablePRJ()
     {
-        $data['prj'] = $this->prj->getPRJ()->result();
-        echo json_encode($this->load->view('prj/table-list',$data, false));
+        // $data['prj_list'] = $this->prj->get_prq()->result();
+        // $data['pr_det'] = $this->approve->get_detail_prq()->result();
+        $list = $this->prj->get_datatables();
+        $data = array();
+        $no = $_POST['start'];
+        foreach ($list as $field) {
+            $no++;
+            if ($field->aprov ==  0) {
+                $state = '<center><i class="fas fa-spinner"></i></center>';
+            } else {
+                $state = '<center><i class="fas fa-check-circle"></i></center>';
+            }
+            if ($field->aprov != 1) {
+                $approve = '<form method="post" action="' . site_url('PRJ/update_state') . '" style="display:inline;">
+                <input type="hidden" name="prj" value="' . $field->rma . '">
+                <button type="submit" class="btn btn-success"><i class="fas fa-check"></i></button>
+            </form>';
+            } else {
+                $approve = '<a href="' . site_url('PRJ/print_prj/'.$field->rma) . '" target="_blank"><button type="button" class="btn btn-primary"><i class="fas fa-print"></i></button></a>';
+            }
+            $row = array();
+            // $row[] = $no;
+            $row[] = $field->rma;
+            $row[] = date('d/m/Y', strtotime($field->date));
+            $row[] = $field->sub;
+            $row[] = $field->remark;
+            $row[] = $state;
+            $row[] = $approve;
+
+
+            $data[] = $row;
+        }
+
+        $output = array(
+            "draw" => $_POST['draw'],
+            "recordsTotal" => $this->prj->count_all(),
+            "recordsFiltered" => $this->prj->count_filtered(),
+            "data" => $data,
+        );
+        // echo json_encode($this->load->view('prj/table-list' ,$output, false));
+        echo json_encode($output);
     }
 
     public function update_state()
