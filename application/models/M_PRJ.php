@@ -7,7 +7,7 @@ class M_PRJ extends CI_Model
     var $table = 'rma'; // nama tabel dari database
     var $column_order = array(null, 'rma', 'date', 'sub', 'remark'); // field yang ada di table user
     var $column_search = array('rma', 'remark'); // field yang diizinkan untuk pencarian 
-    var $order = array('rma' => 'desc'); // default order 
+    var $order = array('date' => 'desc'); // default order 
 
     public function __construct()
     {
@@ -175,5 +175,29 @@ class M_PRJ extends CI_Model
             rmb AS a 
         WHERE
             a.rma = '$prj'");
+    }
+
+    function getPRJ() {
+        $db_cas = $this->load->database('cas', TRUE);
+        return $db_cas->query("SELECT
+            a.rma,
+            a.sub,
+            a.remark,
+            a.period,
+            a.aprov,
+            a.date,
+            b.inv,
+            b.loc,
+            b.remark AS keterangan,
+            b.qty,
+            b.unit,
+            b.etd 
+        FROM
+            rma AS a
+            LEFT JOIN rmb AS b ON b.rma = a.rma 
+        WHERE
+            a.date >= DATE_SUB( CURDATE(), INTERVAL 6 MONTH ) 
+            AND a.rma LIKE '%prj%'
+        ORDER BY a.date desc");
     }
 }
