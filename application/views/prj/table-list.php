@@ -34,10 +34,8 @@
                             <input type="hidden" name="prj" value="<?= $row->rma ?>">
                             <button type="submit" class="btn btn-success"><i class="fas fa-check"></i></button>
                         </form>
-                    <?php }else { ?>
+                    <?php } ?>
                         <a href="<?= site_url('PRJ/print_prj/'.$row->rma) ?>" target="_blank"><button type="button" class="btn btn-primary"><i class="fas fa-print"></i></button></a>
-                    <?php }
-                    ?>
                 </td>
             </tr>
         <?php }
