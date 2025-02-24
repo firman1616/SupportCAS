@@ -5,6 +5,7 @@
             <th>No. OKL</th>
             <th>Nama</th>
             <th>Alamat</th>
+            <th>Remark</th>
             <th>Tanggal SO</th>
             <th>No. POC</th>
             <th>Keterangan Lain</th>
@@ -20,6 +21,7 @@
                 <td><?= $row->okl ?></td>
                 <td><?= $row->nama_sup ?></td>
                 <td><?= $row->address?></td>
+                <td><?= $row->ket ?></td>
                 <td><?= date('d/m/Y', strtotime($row->date)) ?></td>
                 <td><?= $row->nopoc ?></td>
                 <td><?= $row->ketlain ?></td>
