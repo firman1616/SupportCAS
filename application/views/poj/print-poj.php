@@ -5,6 +5,7 @@ foreach ($header_poj as $row) {
     $curancy = $row->cur;
     $kurs = $row->kurs;
     $ppn = $row->ppn;
+    $ppnganti = $row->ppnganti;
     $kode_sup = $row->kode_sup;
     $nama_sup = $row->nama_sup;
     $alamat = $row->alamat;
@@ -23,7 +24,7 @@ foreach ($header_poj as $row) {
             }
             h1 {
             color: black;
-            font-family: Arial, sans-serif;
+            font-family: "Times New Roman", Times, serif;
             font-style: normal;
             font-weight: bold;
             text-decoration: none;
@@ -32,7 +33,7 @@ foreach ($header_poj as $row) {
 
             .h2 {
                 color: black;
-                font-family: Arial, sans-serif;
+                font-family: "Times New Roman", Times, serif;
                 font-style: normal;
                 font-weight: bold;
                 text-decoration: none;
@@ -42,16 +43,25 @@ foreach ($header_poj as $row) {
 
             h3 {
                 color: black;
-                font-family: Arial, sans-serif;
+                font-family: "Times New Roman", Times, serif;
                 font-style: normal;
-                font-weight: bold;
+                font-weight: normal;
                 text-decoration: none;
                 font-size: 10pt;
             }
 
+            h4 {
+                color: black;
+                font-family: "Times New Roman", Times, serif;
+                font-style: normal;
+                font-weight: bold;
+                text-decoration: none;
+                font-size: 11pt;
+            }
+
             .s1 {
                 color: black;
-                font-family: Arial, sans-serif;
+                font-family: "Times New Roman", Times, serif;
                 font-style: normal;
                 font-weight: normal;
                 text-decoration: none;
@@ -60,7 +70,7 @@ foreach ($header_poj as $row) {
 
             .s2 {
                 color: black;
-                font-family: Arial, sans-serif;
+                font-family: "Times New Roman", Times, serif;
                 font-style: normal;
                 font-weight: bold;
                 text-decoration: none;
@@ -70,7 +80,7 @@ foreach ($header_poj as $row) {
 
             .s3 {
                 color: black;
-                font-family: Arial, sans-serif;
+                font-family: "Times New Roman", Times, serif;
                 font-style: normal;
                 font-weight: bold;
                 text-decoration: none;
@@ -80,16 +90,16 @@ foreach ($header_poj as $row) {
 
             .s4 {
                 color: black;
-                font-family: Arial, sans-serif;
+                font-family: "Times New Roman", Times, serif;
                 font-style: normal;
-                font-weight: bold;
+                font-weight: normal;
                 text-decoration: none;
                 font-size: 9pt;
             }
 
             .s5 {
                 color: black;
-                font-family: Arial, sans-serif;
+                font-family: "Times New Roman", Times, serif;
                 font-style: normal;
                 font-weight: normal;
                 text-decoration: none;
@@ -99,7 +109,7 @@ foreach ($header_poj as $row) {
             .p,
             p {
                 color: black;
-                font-family: Arial, sans-serif;
+                font-family: "Times New Roman", Times, serif;
                 font-style: normal;
                 font-weight: normal;
                 text-decoration: none;
@@ -109,7 +119,7 @@ foreach ($header_poj as $row) {
 
             .s6 {
                 color: black;
-                font-family: Arial, sans-serif;
+                font-family: "Times New Roman", Times, serif;
                 font-style: normal;
                 font-weight: normal;
                 text-decoration: none;
@@ -119,7 +129,7 @@ foreach ($header_poj as $row) {
 
             .s7 {
                 color: black;
-                font-family: Arial, sans-serif;
+                font-family: "Times New Roman", Times, serif;
                 font-style: normal;
                 font-weight: normal;
                 text-decoration: none;
@@ -151,7 +161,7 @@ foreach ($header_poj as $row) {
 
             .footnote {
                 margin-left:20pt;
-                font-family: Arial, sans-serif;
+                font-family: "Times New Roman", Times, serif;
                 font-style: normal;
                 font-size: 9pt;
             }
@@ -172,7 +182,7 @@ foreach ($header_poj as $row) {
                 </td>
                 <td colspan="2">
                     <h1 style="padding-top: 4pt;padding-left: 5pt;text-indent: 0pt;line-height: 18pt;text-align: left;">PT. BARAMUDA BAHARI</h1>
-                    <h3 style="padding-left: 5pt;text-indent: 0pt;line-height: 109%;text-align: left;">Desa Wonokoyo, Kec Beji, Pasuruan 67153, Indonesia</h3>
+                    <h4 style="padding-left: 5pt;text-indent: 0pt;line-height: 109%;text-align: left;">Desa Wonokoyo, Kec Beji, Pasuruan 67154, Indonesia</h4>
                 </td>
                 <td width="243">
                     <h1 style="padding-top: 4pt; padding-left: 0pt; text-indent: 0pt; line-height: 14pt; text-align: center; margin-bottom: 5px;">PO Jasa</h1>
@@ -279,7 +289,14 @@ foreach ($header_poj as $row) {
             }else {
                 $pajak = $val *  0.11;
             }
-            $grand_all =  $val + $pajak + $sumpph;
+            if ($ppnganti == 0) {
+                // Handle the error, set default values, or log a message
+                $pajakppnp = 0;  // Example default value
+            }else {
+                $pajakppnp = $val *  0.012;
+            }
+
+            $grand_all =  $val + $pajak - $sumpph + $pajakppnp;
             ?>
 
             <tr style="height:15pt">
@@ -307,7 +324,7 @@ foreach ($header_poj as $row) {
                 <td style="width:70pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
                     <p class="s5" style="padding-top: 3pt;padding-right: 3pt;text-indent: 0pt;text-align: right;"><?= number_format($row->val,2) ?></p>
                 </td>
-                <td style="width:105pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
+                <td style="width:105pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-right-style:solid;border-right-width:1pt">
                     <p class="s5" style="padding-top: 3pt;padding-left: 3pt; padding-right: 3pt;text-indent: 0pt;text-align: left;"><?= $row->etd ?></p>
                 </td>
             </tr>
@@ -325,7 +342,7 @@ foreach ($header_poj as $row) {
                 <td style="width:70pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
                     <p class="s5" style="padding-top: 3pt;padding-right: 3pt;text-indent: 0pt;text-align: right;"><?= number_format($val,2) ?></p>
                 </td>
-                <td rowspan="5" style="width:70pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
+                <td rowspan="5" style="width:70pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
                 </td>
             </tr>
             <tr>
@@ -349,7 +366,7 @@ foreach ($header_poj as $row) {
                     <p class="s5" style="padding-top: 3pt;padding-right: 3pt;text-indent: 0pt;text-align: right;">PPNP</p>
                 </td>
                 <td style="width:70pt;border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
-                    <p class="s5" style="padding-top: 3pt;padding-right: 3pt;text-indent: 0pt;text-align: right;">0.00</p>
+                    <p class="s5" style="padding-top: 3pt;padding-right: 3pt;text-indent: 0pt;text-align: right;"><?= number_format($pajakppnp,2) ?></p>
                 </td>
             </tr>
             <tr>
@@ -361,25 +378,25 @@ foreach ($header_poj as $row) {
                 </td>
             </tr>
             <tr>
-                <td colspan="3" style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
-                    <p class="s4" style="padding-top: 3pt;padding-left: 3pt;text-indent: 0pt;text-align: center;">Dibuat oleh :</p>
+                <td colspan="3" style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-right-style:solid;border-right-width:1pt">
+                    <p class="s4" style="padding-top: 3pt;padding-left: 3pt;text-indent: 0pt;text-align: center;">DIBUAT OLEH :</p>
                 </td>
-                <td colspan="4" style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
-                    <p class="s4" style="padding-top: 3pt;padding-left: 3pt;text-indent: 0pt;text-align: center;">Diterima oleh :</p>
+                <td colspan="4" style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-right-style:solid;border-right-width:1pt">
+                    <p class="s4" style="padding-top: 3pt;padding-left: 3pt;text-indent: 0pt;text-align: center;">DITERIMA OLEH :</p>
                 </td>
-                <td colspan="2" style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
-                    <p class="s4" style="padding-top: 3pt;padding-left: 3pt;text-indent: 0pt;text-align: center;">Disetujui oleh :</p>
+                <td colspan="2" style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-right-style:solid;border-right-width:1pt">
+                    <p class="s4" style="padding-top: 3pt;padding-left: 3pt;text-indent: 0pt;text-align: center;">DISETUJUI OLEH :</p>
                 </td>
             </tr>
             <tr>
-                <td colspan="3" style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
+                <td colspan="3" style="border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
                     <br><br><br>
                     <p class="s5" style="padding-top: 3pt;padding-left: 3pt;text-indent: 0pt;text-align: center;">Reny Hariyati</p>
                 </td>
-                <td colspan="4" style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
+                <td colspan="4" style="border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
                     <br><br><br>
                 </td>
-                <td colspan="2" style="border-top-style:solid;border-top-width:1pt;border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
+                <td colspan="2" style="border-left-style:solid;border-left-width:1pt;border-bottom-style:solid;border-bottom-width:1pt;border-right-style:solid;border-right-width:1pt">
                     <br><br><br>
                     <p class="s5" style="padding-top: 3pt;padding-left: 3pt;text-indent: 0pt;text-align: center;">Yohanes Yoelianto</p>
                 </td>

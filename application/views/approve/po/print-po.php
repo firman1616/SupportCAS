@@ -24,7 +24,7 @@ foreach ($header as $row) {
             }
             h1 {
             color: black;
-            font-family: Arial, sans-serif;
+            font-family: "Times New Roman", Times, serif;
             font-style: normal;
             font-weight: bold;
             text-decoration: none;
@@ -33,7 +33,7 @@ foreach ($header as $row) {
 
             .h2 {
                 color: black;
-                font-family: Arial, sans-serif;
+                font-family: "Times New Roman", Times, serif;
                 font-style: normal;
                 font-weight: bold;
                 text-decoration: none;
@@ -43,16 +43,25 @@ foreach ($header as $row) {
 
             h3 {
                 color: black;
-                font-family: Arial, sans-serif;
+                font-family: "Times New Roman", Times, serif;
                 font-style: normal;
                 font-weight: bold;
                 text-decoration: none;
                 font-size: 10pt;
             }
 
+            h4 {
+                color: black;
+                font-family: "Times New Roman", Times, serif;
+                font-style: normal;
+                font-weight: bold;
+                text-decoration: none;
+                font-size: 11pt;
+            }
+
             .s1 {
                 color: black;
-                font-family: Arial, sans-serif;
+                font-family: "Times New Roman", Times, serif;
                 font-style: normal;
                 font-weight: normal;
                 text-decoration: none;
@@ -61,7 +70,7 @@ foreach ($header as $row) {
 
             .s2 {
                 color: black;
-                font-family: Arial, sans-serif;
+                font-family: "Times New Roman", Times, serif;
                 font-style: normal;
                 font-weight: bold;
                 text-decoration: none;
@@ -71,7 +80,7 @@ foreach ($header as $row) {
 
             .s3 {
                 color: black;
-                font-family: Arial, sans-serif;
+                font-family: "Times New Roman", Times, serif;
                 font-style: normal;
                 font-weight: bold;
                 text-decoration: none;
@@ -81,7 +90,7 @@ foreach ($header as $row) {
 
             .s4 {
                 color: black;
-                font-family: Arial, sans-serif;
+                font-family: "Times New Roman", Times, serif;
                 font-style: normal;
                 font-weight: bold;
                 text-decoration: none;
@@ -90,7 +99,7 @@ foreach ($header as $row) {
 
             .s5 {
                 color: black;
-                font-family: Arial, sans-serif;
+                font-family: "Times New Roman", Times, serif;
                 font-style: normal;
                 font-weight: normal;
                 text-decoration: none;
@@ -100,7 +109,7 @@ foreach ($header as $row) {
             .p,
             p {
                 color: black;
-                font-family: Arial, sans-serif;
+                font-family:"Times New Roman", Times, serif;
                 font-style: normal;
                 font-weight: normal;
                 text-decoration: none;
@@ -110,7 +119,7 @@ foreach ($header as $row) {
 
             .s6 {
                 color: black;
-                font-family: Arial, sans-serif;
+                font-family: "Times New Roman", Times, serif;
                 font-style: normal;
                 font-weight: normal;
                 text-decoration: none;
@@ -120,7 +129,7 @@ foreach ($header as $row) {
 
             .s7 {
                 color: black;
-                font-family: Arial, sans-serif;
+                font-family: "Times New Roman", Times, serif;
                 font-style: normal;
                 font-weight: normal;
                 text-decoration: none;
@@ -152,7 +161,7 @@ foreach ($header as $row) {
 
             .footnote {
                 margin-left:20pt;
-                font-family: Arial, sans-serif;
+                font-family: "Times New Roman", Times, serif;
                 font-style: normal;
                 font-size: 9pt;
             }
@@ -173,7 +182,7 @@ foreach ($header as $row) {
                 </td>
                 <td colspan="2">
                     <h1 style="padding-top: 4pt;padding-left: 5pt;text-indent: 0pt;line-height: 18pt;text-align: left;">PT. BARAMUDA BAHARI</h1>
-                    <h3 style="padding-left: 5pt;text-indent: 0pt;line-height: 109%;text-align: left;">Desa Wonokoyo, Kec Beji, Pasuruan 67153, Indonesia</h3>
+                    <h4 style="padding-left: 5pt;text-indent: 0pt;line-height: 109%;text-align: left;">Desa Wonokoyo, Kec Beji, Pasuruan 67153, Indonesia</h4>
                 </td>
                 <td width="240">
                     <h1 style="padding-top: 4pt; padding-left: 0pt; text-indent: 0pt; line-height: 14pt; text-align: center; margin-bottom: 5px;">PURCHASE ORDER</h1>

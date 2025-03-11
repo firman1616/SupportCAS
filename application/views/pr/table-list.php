@@ -33,7 +33,7 @@
                             <input type="hidden" name="prq" value="<?= $row->prq ?>">
                             <button type="submit" class="btn btn-success"><i class="fas fa-check"></i></button>
                         </form>
-                    <?php }elseif ($row->cct == 'WHS') { ?>
+                    <?php }elseif ($row->close == '0') { ?>
                         <form method="post" action="<?= base_url('Pr_approve/cancel_update_state') ?>" style="display:inline;">
                             <input type="hidden" name="cancel_prq" value="<?= $row->prq ?>">
                             <button type="submit" class="btn btn-danger" title="batal approve"><i class="fas fa-times-circle"></i></button>

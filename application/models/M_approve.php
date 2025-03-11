@@ -85,6 +85,7 @@ class M_approve extends CI_Model
             a.prq,
             a.date,
             a.cct,
+            a.close,
             a.remark,
             a.categ_id,
             a.aprov 
